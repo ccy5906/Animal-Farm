@@ -47,13 +47,15 @@ public class main {
 				panel1.setBounds(0, 0, res.width, res.height);
 				frame.getContentPane().add(panel1);
 				
-				Font font = new Font("210 슈크림빵 Bold",Font.PLAIN,30);
+				Font font = new Font("나눔스퀘어 ExtraBold",Font.PLAIN,30);
 				
 				JButton butstart = new JButton("게임시작");
 				JButton butway = new JButton("게임방법");
 				
 				butstart.setBounds(1400,650,300,100);
 				butway.setBounds(1400,800,300,100);
+				butstart.setBackground(new Color(237,228,192));
+				butway.setBackground(new Color(237,228,192));
 				butstart.setFont(font);
 				butway.setFont(font);
 				

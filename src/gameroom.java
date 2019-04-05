@@ -39,7 +39,7 @@ public class gameroom extends JFrame {
 	int cnt = 0;
 	int min = 0,max=100;
 	static JProgressBar feelBar;
-	
+	int time = 60;
 
 	public gameroom() {
 		super("동물농장");
@@ -48,7 +48,7 @@ public class gameroom extends JFrame {
 		ImageIcon back = rszImg("img/igloo.png", res.width, res.height);
 		Font font = new Font("나눔스퀘어 ExtraBold",Font.PLAIN,20);
 		Color color = new Color(113, 191, 226);
-
+		Font font_time = new Font("나눔스퀘어 ExtraBold",Font.PLAIN,35);
 		contentPane = new JPanel() {
 			public void paintComponent(Graphics g) {
 				g.drawImage(back.getImage(), 0, 0, null);
@@ -96,6 +96,15 @@ public class gameroom extends JFrame {
 		meet.setContentAreaFilled(false);
 		contentPane.add(meet);
 
+		JLabel count = new JLabel("남은 시간 : ");
+		count.setBounds(1600, 100, 200, 50);
+		count.setFont(font_time);
+		contentPane.add(count);
+		JLabel counttime = new JLabel();
+		counttime.setBounds(1800, 100, 200, 50);
+		counttime.setFont(font_time);
+		contentPane.add(counttime);
+		
 		/*
 		 * JLabel hungry = new JLabel("배고픔 지수"); hungry.setBounds(100, 20, 100, 100);
 		 * contentPane.add(hungry);
@@ -184,6 +193,25 @@ public class gameroom extends JFrame {
 		};
 		meet.addActionListener(meetAct);
 
+		
+		class ThreadCount extends Thread{
+	    	public void run(){    		
+	    		while(true) {
+	    		 try{
+	    		        Thread.sleep(1000);
+	    		        System.out.println(time);
+	    		        counttime.setText(time+" 초");
+	    		         time--;
+	    		      }catch(Exception e) {
+	    		        System.out.println(e.getMessage());
+	    		      }
+
+	    		}//while
+	    	}//run
+	    }//class
+		//시간초 재기
+		ThreadCount th = new ThreadCount();		
+		th.start();
 
 	}//생성자
 
